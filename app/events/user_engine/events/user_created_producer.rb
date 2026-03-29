@@ -4,7 +4,7 @@ module UserEngine
       TOPIC = "user.created".freeze
 
       # .call(user) is the single entry point
-      def self.cache(user)
+      def self.call(user)
         message = {
           event: "user.created",
           user_id: user.id,

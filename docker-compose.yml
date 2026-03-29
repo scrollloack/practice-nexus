@@ -28,11 +28,26 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_LISTENERS: PLAINTEXT://:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_HEAP_OPTS: "-Xmx512M -Xms256M"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "kafka-topics",
+          "--bootstrap-server",
+          "localhost:9092",
+          "--list",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
 
   kafdrop:
     image: obsidiandynamics/kafdrop:latest
@@ -67,14 +82,17 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - kafka
-      - db
+      kafka:
+        condition: service_healthy
+      db:
+        condition: service_started
     environment:
       DB_HOST: db
       DB_USERNAME: postgres
       DB_PASSWORD: password
       RAILS_ENV: development
       KAFKA_BROKER: kafka:9092
+      KARAFKA_ENV: development
 
 volumes:
   postgres_data:

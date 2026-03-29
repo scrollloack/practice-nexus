@@ -33,4 +33,4 @@
 /config/master.key
 
 # Ignore new battle-plans
-doc/battle-plan/*
+# doc/battle-plan/*

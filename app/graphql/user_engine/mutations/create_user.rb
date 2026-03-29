@@ -20,7 +20,7 @@ module UserEngine
         if user.save
           # After successful save → publish Kafka event (covered in Section 8)
 
-          # UserEngine::Events::UserCreatedProducer.call(user)
+          UserEngine::Events::UserCreatedProducer.call(user)
 
           { user: user, errors: [] }
         else
