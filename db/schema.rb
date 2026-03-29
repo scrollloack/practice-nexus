@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_29_065043) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_29_092544) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "email_engine_processed_events", force: :cascade do |t|
+    t.string "event_id", null: false
+    t.string "topic", null: false
+    t.datetime "processed_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "topic"], name: "index_email_engine_processed_events_on_event_id_and_topic", unique: true
+  end
 
   create_table "user_engine_users", force: :cascade do |t|
     t.string "name"

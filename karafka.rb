@@ -10,8 +10,8 @@ class KarafkaApp < Karafka::App
 
   routes.draw do
     # EmailEngine subscribes to the user.created topic
-    # topic "user.created" do
-    #   consumer EmailEngine::Consumers::UserCreatedConsumer
-    # end
+    topic "user.created" do
+      consumer EmailEngine::Consumers::UserCreatedConsumer
+    end
   end
 end
