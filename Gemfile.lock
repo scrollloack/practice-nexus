@@ -1,3 +1,15 @@
+PATH
+  remote: engines/email_engine
+  specs:
+    email_engine (0.1.0)
+      rails (>= 7.2.3.1)
+
+PATH
+  remote: engines/user_engine
+  specs:
+    user_engine (0.1.0)
+      rails (>= 7.2.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -94,8 +106,23 @@ GEM
     drb (2.2.3)
     erb (6.0.2)
     erubi (1.13.1)
+    ffi (1.17.4-aarch64-linux-gnu)
+    ffi (1.17.4-aarch64-linux-musl)
+    ffi (1.17.4-arm-linux-gnu)
+    ffi (1.17.4-arm-linux-musl)
+    ffi (1.17.4-arm64-darwin)
+    ffi (1.17.4-x86_64-darwin)
+    ffi (1.17.4-x86_64-linux-gnu)
+    ffi (1.17.4-x86_64-linux-musl)
+    fiber-storage (1.0.1)
     globalid (1.3.0)
       activesupport (>= 6.1)
+    graphiql-rails (1.10.5)
+      railties
+    graphql (2.5.22)
+      base64
+      fiber-storage
+      logger
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     io-console (0.8.2)
@@ -105,6 +132,50 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.19.3)
+    karafka (2.5.8)
+      karafka-core (>= 2.5.6, < 2.6.0)
+      karafka-rdkafka (>= 0.24.0)
+      waterdrop (>= 2.8.14, < 3.0.0)
+      zeitwerk (~> 2.3)
+    karafka-core (2.5.10)
+      karafka-rdkafka (>= 0.20.0)
+      logger (>= 1.6.0)
+    karafka-rdkafka (0.24.0)
+      ffi (~> 1.17.1)
+      json (> 2.0)
+      logger
+      mini_portile2 (~> 2.6)
+      rake (> 12)
+    karafka-rdkafka (0.24.0-aarch64-linux-gnu)
+      ffi (~> 1.17.1)
+      json (> 2.0)
+      logger
+      mini_portile2 (~> 2.6)
+      rake (> 12)
+    karafka-rdkafka (0.24.0-aarch64-linux-musl)
+      ffi (~> 1.17.1)
+      json (> 2.0)
+      logger
+      mini_portile2 (~> 2.6)
+      rake (> 12)
+    karafka-rdkafka (0.24.0-arm64-darwin)
+      ffi (~> 1.17.1)
+      json (> 2.0)
+      logger
+      mini_portile2 (~> 2.6)
+      rake (> 12)
+    karafka-rdkafka (0.24.0-x86_64-linux-gnu)
+      ffi (~> 1.17.1)
+      json (> 2.0)
+      logger
+      mini_portile2 (~> 2.6)
+      rake (> 12)
+    karafka-rdkafka (0.24.0-x86_64-linux-musl)
+      ffi (~> 1.17.1)
+      json (> 2.0)
+      logger
+      mini_portile2 (~> 2.6)
+      rake (> 12)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -119,6 +190,7 @@ GEM
       net-smtp
     marcel (1.1.0)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (5.27.0)
     msgpack (1.8.0)
     net-imap (0.6.3)
@@ -246,6 +318,14 @@ GEM
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    sprockets (4.2.2)
+      concurrent-ruby (~> 1.0)
+      logger
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.5.2)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      sprockets (>= 3.0.0)
     stringio (3.2.0)
     thor (1.5.0)
     timeout (0.6.1)
@@ -256,6 +336,10 @@ GEM
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
     useragent (0.16.11)
+    waterdrop (2.8.16)
+      karafka-core (>= 2.4.9, < 3.0.0)
+      karafka-rdkafka (>= 0.24.0)
+      zeitwerk (~> 2.3)
     websocket-driver (0.8.0)
       base64
       websocket-extensions (>= 0.1.0)
@@ -278,11 +362,17 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
+  email_engine!
+  graphiql-rails
+  graphql (~> 2.3)
+  karafka (~> 2.3)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.2, >= 7.2.2.1)
   rubocop-rails-omakase
+  sprockets-rails
   tzinfo-data
+  user_engine!
 
 CHECKSUMS
   actioncable (7.2.3.1) sha256=d3bf40a3f4fc79a09709878f0e5c43a5e2d8e6607089f6b38f9472b8715eb33c
@@ -310,13 +400,33 @@ CHECKSUMS
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
   debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
+  email_engine (0.1.0)
   erb (6.0.2) sha256=9fe6264d44f79422c87490a1558479bd0e7dad4dd0e317656e67ea3077b5242b
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
+  ffi (1.17.4-aarch64-linux-gnu) sha256=b208f06f91ffd8f5e1193da3cae3d2ccfc27fc36fba577baf698d26d91c080df
+  ffi (1.17.4-aarch64-linux-musl) sha256=9286b7a615f2676245283aef0a0a3b475ae3aae2bb5448baace630bb77b91f39
+  ffi (1.17.4-arm-linux-gnu) sha256=d6dbddf7cb77bf955411af5f187a65b8cd378cb003c15c05697f5feee1cb1564
+  ffi (1.17.4-arm-linux-musl) sha256=9d4838ded0465bef6e2426935f6bcc93134b6616785a84ffd2a3d82bc3cf6f95
+  ffi (1.17.4-arm64-darwin) sha256=19071aaf1419251b0a46852abf960e77330a3b334d13a4ab51d58b31a937001b
+  ffi (1.17.4-x86_64-darwin) sha256=aa70390523cf3235096cf64962b709b4cfbd5c082a2cb2ae714eb0fe2ccda496
+  ffi (1.17.4-x86_64-linux-gnu) sha256=9d3db14c2eae074b382fa9c083fe95aec6e0a1451da249eab096c34002bc752d
+  ffi (1.17.4-x86_64-linux-musl) sha256=3fdf9888483de005f8ef8d1cf2d3b20d86626af206cbf780f6a6a12439a9c49e
+  fiber-storage (1.0.1) sha256=f48e5b6d8b0be96dac486332b55cee82240057065dc761c1ea692b2e719240e1
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
+  graphiql-rails (1.10.5) sha256=d911486eeac01e125d403a61c04f634cccaff9f8ecee5dc4efce3e7aa11bf5d3
+  graphql (2.5.22) sha256=d2dccbe6a432e1b89bdb8ccca0572a6bb867a28caceb5fe029ee7741c7854bc0
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.17.0) sha256=168c4ddb93d8a361a045c41d92b2952c7a118fa73f23fe14e55609eb7a863aae
   json (2.19.3) sha256=289b0bb53052a1fa8c34ab33cc750b659ba14a5c45f3fcf4b18762dc67c78646
+  karafka (2.5.8) sha256=ffc6932e213eb8645e1d6663ddcee64ae58bf3d60c73e5cd526953fb2e3267ef
+  karafka-core (2.5.10) sha256=a4f9127186728502decf0817d366b4eec46593390047c278acddb636e63e384c
+  karafka-rdkafka (0.24.0) sha256=91e9eb753d7f72036721af4ce0f3f2dcf7c145a2e324fc1cba7b6f837def4e09
+  karafka-rdkafka (0.24.0-aarch64-linux-gnu) sha256=1685c91b81ee97d81528f03db292eadad3a7e191b29613f24d5ba9a7a434f097
+  karafka-rdkafka (0.24.0-aarch64-linux-musl) sha256=498c70b2db1b89c2e68d6d8b8884cf60a5e3b24747c077c72dc0329007f6ba36
+  karafka-rdkafka (0.24.0-arm64-darwin) sha256=08863151181c7aebd028049f9e8ff75ed55f9b1846f7eedb4dd82937cf18845f
+  karafka-rdkafka (0.24.0-x86_64-linux-gnu) sha256=a1c8561f6df2e3d466053cebeeab6ae96ebd7aa931632ab49d18a71cae978633
+  karafka-rdkafka (0.24.0-x86_64-linux-musl) sha256=dcb3f4017d204bb3c46dd39b41dbe568eee6babc69063663a1ce6e13ce08136e
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
@@ -324,6 +434,7 @@ CHECKSUMS
   mail (2.9.0) sha256=6fa6673ecd71c60c2d996260f9ee3dd387d4673b8169b502134659ece6d34941
   marcel (1.1.0) sha256=fdcfcfa33cc52e93c4308d40e4090a5d4ea279e160a7f6af988260fa970e0bee
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
+  mini_portile2 (2.8.9) sha256=0cd7c7f824e010c072e33f68bc02d85a00aeb6fce05bb4819c03dfd3c140c289
   minitest (5.27.0) sha256=2d3b17f8a36fe7801c1adcffdbc38233b938eb0b4966e97a6739055a45fa77d5
   msgpack (1.8.0) sha256=e64ce0212000d016809f5048b48eb3a65ffb169db22238fb4b72472fecb2d732
   net-imap (0.6.3) sha256=9bab75f876596d09ee7bf911a291da478e0cd6badc54dfb82874855ccc82f2ad
@@ -374,6 +485,8 @@ CHECKSUMS
   rubocop-rails-omakase (1.1.0) sha256=2af73ac8ee5852de2919abbd2618af9c15c19b512c4cfc1f9a5d3b6ef009109d
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
+  sprockets (4.2.2) sha256=761e5a49f1c288704763f73139763564c845a8f856d52fba013458f8af1b59b1
+  sprockets-rails (3.5.2) sha256=a9e88e6ce9f8c912d349aa5401509165ec42326baf9e942a85de4b76dbc4119e
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   timeout (0.6.1) sha256=78f57368a7e7bbadec56971f78a3f5ecbcfb59b7fcbb0a3ed6ddc08a5094accb
@@ -381,10 +494,15 @@ CHECKSUMS
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
   unicode-emoji (4.2.0) sha256=519e69150f75652e40bf736106cfbc8f0f73aa3fb6a65afe62fefa7f80b0f80f
+  user_engine (0.1.0)
   useragent (0.16.11) sha256=700e6413ad4bb954bb63547fa098dddf7b0ebe75b40cc6f93b8d54255b173844
+  waterdrop (2.8.16) sha256=a48e795b5eaeb3cef77b4eb0f98e9e88e657cf02a8120bc8a1597dc6bf9626c1
   websocket-driver (0.8.0) sha256=ed0dba4b943c22f17f9a734817e808bc84cdce6a7e22045f5315aa57676d4962
   websocket-extensions (0.1.5) sha256=1c6ba63092cda343eb53fc657110c71c754c56484aad42578495227d717a8241
   zeitwerk (2.7.5) sha256=d8da92128c09ea6ec62c949011b00ed4a20242b255293dd66bf41545398f73dd
+
+RUBY VERSION
+  ruby 3.4.9
 
 BUNDLED WITH
   4.0.9

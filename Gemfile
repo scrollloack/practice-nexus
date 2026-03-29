@@ -1,4 +1,7 @@
 source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby "3.4.9"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.2", ">= 7.2.2.1"
@@ -6,6 +9,19 @@ gem "rails", "~> 7.2.2", ">= 7.2.2.1"
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
+gem "sprockets-rails"        # Asset pipeline (required by graphiql-rails)
+
+# GraphQL
+gem "graphql", "~> 2.3"      # Core GraphQL-Ruby library
+gem "graphiql-rails"         # Browser-based GraphQL IDE (development only)
+
+# Kafka / Pub-Sub
+gem "karafka", "~> 2.3"      # Kafka client — producers + consumers (Rails-native)
+
+# Engines (local path references)
+gem "user_engine",  path: "engines/user_engine"
+gem "email_engine", path: "engines/email_engine"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
@@ -39,5 +55,3 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
-
-
