@@ -16,7 +16,7 @@ gem "graphql", "~> 2.3"      # Core GraphQL-Ruby library
 gem "graphiql-rails"         # Browser-based GraphQL IDE (development only)
 
 # Kafka / Pub-Sub
-gem "karafka", "~> 2.3"      # Kafka client — producers + consumers (Rails-native)
+gem "karafka", "~> 2.5"      # Kafka client — producers + consumers (Rails-native)
 
 # Engines (local path references)
 gem "user_engine",  path: "engines/user_engine"
