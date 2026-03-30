@@ -34,3 +34,7 @@
 
 # Ignore new battle-plans
 doc/battle-plan/*
+
+# ignore device-specific claude code settings
+.claude/*
+!.claude/agents
