@@ -1,5 +1,43 @@
 {
   "defaultMode": "plan",
   "effortLevel": "high",
-  "model": "sonnet"
+  "model": "sonnet",
+  "permissions": {
+    "allow": [
+      "Bash(netstat -tlnp)",
+      "Bash(grep -oP pid=K[0-9]+)",
+      "Bash(fuser 6379/tcp)",
+      "Bash(bundle install:*)",
+      "Bash(bundle config:*)",
+      "Read(//home/bandelaria/.bundle/**)",
+      "Bash(rails s:*)",
+      "Bash(EDITOR=\"cat\" rails credentials:show)",
+      "Bash(ls /home/bandelaria/dev/worksight/.env*)",
+      "Bash(ls /home/bandelaria/dev/worksight/config/personal.*)",
+      "Bash(npm --version)",
+      "Read(//usr/bin/**)",
+      "Bash(apt list:*)",
+      "Bash(pg_lsclusters)",
+      "Bash(systemctl status:*)",
+      "Bash(heroku auth:whoami)",
+      "Bash(heroku apps:*)",
+      "Bash(psql -U postgres -l)",
+      "Bash(psql -l)",
+      "Bash(heroku pg:info --app worksight-staging)",
+      "Bash(apt-cache show:*)",
+      "Bash(apt-cache policy:*)",
+      "Bash(find /home/bandelaria/dev/worksight/node_modules -name jstz*)",
+      "Bash(redis-server --version)",
+      "Bash(cmd.exe /c \"code --list-extensions\")",
+      "Bash(cmd.exe /c \"cursor --list-extensions\")",
+      "Bash(cmd.exe /c \"where cursor\")",
+      "Bash(for ext:*)",
+      "Bash(do)",
+      "Bash(echo \"Installing $ext...\")",
+      "Bash(cmd.exe /c \"cursor --install-extension $ext\")",
+      "Bash(done)",
+      "Bash(echo $SHELL)",
+      "Bash(rails db:migrate)"
+    ]
+  }
 }
