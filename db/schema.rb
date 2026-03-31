@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_03_29_092544) do
+ActiveRecord::Schema[7.2].define(version: 2026_03_31_110428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "audit_engine_audit_logs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "action", null: false
+    t.text "changed_fields"
+    t.datetime "occurred_at", null: false
+    t.string "event_id", null: false
+    t.string "topic", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "topic"], name: "index_audit_engine_audit_logs_on_event_id_and_topic", unique: true
+    t.index ["user_id"], name: "index_audit_engine_audit_logs_on_user_id"
+  end
 
   create_table "email_engine_processed_events", force: :cascade do |t|
     t.string "event_id", null: false

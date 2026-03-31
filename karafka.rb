@@ -10,8 +10,20 @@ class KarafkaApp < Karafka::App
   end
 
   routes.draw do
-    topic 'user.created' do
-      consumer EmailEngine::Consumers::UserCreatedConsumer
+    consumer_group :email_service do
+      topic 'user.created' do
+        consumer EmailEngine::Consumers::UserCreatedConsumer
+      end
+    end
+
+    consumer_group :audit_service do
+      topic 'user.created' do
+        consumer AuditEngine::Consumers::UserEventConsumer
+      end
+
+      topic 'user.updated' do
+        consumer AuditEngine::Consumers::UserEventConsumer
+      end
     end
   end
 end
