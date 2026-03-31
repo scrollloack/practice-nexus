@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module UserEngine
   module Events
     class UserUpdatedProducer
-      TOPIC = 'user.updated'.freeze
+      TOPIC = 'user.updated'
 
       # .call(user, changed_fields) is the single entry point
       # changed_fields: hash of { field_name => new_value } for

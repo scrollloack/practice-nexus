@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuditEngine
   module Consumers
     class UserEventConsumer < Karafka::BaseConsumer
@@ -18,7 +20,7 @@ module AuditEngine
         # Idempotency check — the unique index on [event_id, topic] will also enforce this
         # at the DB level, but we check first to avoid unnecessary DB writes
 
-        nil if AuditEngine::AuditLog.exists?(event_id: message.offset, topic: message.topic)
+        return if AuditEngine::AuditLog.exists?(event_id: message.offset, topic: message.topic)
 
         action = case payload[:event]
                  when 'user.created' then 'created'

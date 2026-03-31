@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserEngine
   module Mutations
     class UpdateUser < GraphQL::Schema::Mutation
@@ -6,12 +8,12 @@ module UserEngine
       argument :input, Types::UpdateUserInput, required: true
 
       field :user, Types::UserType, null: true
-      field :errors, [String], null: true
+      field :errors, [String], null: false
 
       def resolve(input:)
         user = UserEngine::User.find_by(id: input[:id])
 
-        return { user: nil, errors: ['Users not found'] } if user.nil?
+        return { user: nil, errors: ['User not found'] } if user.nil?
 
         # Build only the attributes the client actually sent (reject nil values)
         attrs = {}

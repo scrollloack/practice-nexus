@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserEngine
   module Types
     class UpdateUserInput < GraphQL::Schema::InputObject
