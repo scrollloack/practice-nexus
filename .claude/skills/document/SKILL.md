@@ -1,17 +1,17 @@
 ---
 name: document
-description: Create a battle plan document in doc/battle-plan/ for a feature or topic
+description: Create a battle plan document in docs/battle-plan/ for a feature or topic
 argument-hint: feature or topic description
 disable-model-invocation: true
 ---
 
 # Battle Plan
 
-Create a structured battle plan document in `doc/battle-plan/` for: $ARGUMENTS
+Create a structured battle plan document in `docs/battle-plan/` for: $ARGUMENTS
 
 ## Step 1 — Determine the filename
 
-1. List all files in `doc/battle-plan/` using Glob
+1. List all files in `docs/battle-plan/` using Glob
 2. Find today's date in `YYYYMMDD` format from your system context (`currentDate`)
 3. Find the highest `NN` sequence number across ALL existing files (regardless of date)
 4. Increment by 1 — that is the new `NN` (zero-padded to 2 digits, e.g. `17`)
@@ -24,7 +24,7 @@ Read 1-2 of the most recent battle plan files to internalize the current project
 
 ## Step 3 — Write the battle plan
 
-Save the file to `doc/battle-plan/<filename>`. Follow this structure exactly:
+Save the file to `docs/battle-plan/<filename>`. Follow this structure exactly:
 
 ````markdown
 # NN — Feature Title (Human-Readable)
