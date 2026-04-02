@@ -72,6 +72,5 @@ After all tasks complete and verified:
 
 **Required workflow skills:**
 
-- **using-git-worktrees** - REQUIRED: Set up isolated workspace before starting
 - **writing-plans** - Creates the plan this skill executes
 - **finishing-a-development-branch** - Complete development after all tasks

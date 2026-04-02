@@ -26,10 +26,10 @@ You MUST create a task for each of these items and complete them in order:
 3. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
 4. **Propose 2-3 approaches** — with trade-offs and your recommendation
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
-6. **Write design doc** — save to `docs/specs/YYYY-MM-DD-<topic>-design.md` and commit
-7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
-8. **User reviews written spec** — ask user to review the spec file before proceeding
-9. **Create isolated workspace** — invoke using-git-worktrees skill to set up a dedicated worktree
+6. **Create feature branch** — create `archieb/WOR-XXXX` branch before any file writes
+7. **Write design doc** — save to `docs/specs/YYYY-MM-DD-<topic>-design.md` (gitignored, not committed)
+8. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
+9. **User reviews written spec** — ask user to review the spec file before proceeding
 10. **Transition to implementation** — invoke writing-plans skill to create implementation plan
 
 ## Process Flow
@@ -60,12 +60,11 @@ digraph brainstorming {
     "Write design doc" -> "Spec self-review\n(fix inline)";
     "Spec self-review\n(fix inline)" -> "User reviews spec?";
     "User reviews spec?" -> "Write design doc" [label="changes requested"];
-    "User reviews spec?" -> "Invoke using-git-worktrees skill" [label="approved"];
-    "Invoke using-git-worktrees skill" -> "Invoke writing-plans skill";
+    "User reviews spec?" -> "Invoke writing-plans skill" [label="approved"];
 }
 ```
 
-**After design approval:** invoke using-git-worktrees to create the isolated workspace, then invoke writing-plans. Do NOT invoke any other implementation skill. The ONLY skills you invoke after design approval are using-git-worktrees then writing-plans.
+**After design approval:** invoke writing-plans to create the implementation plan. Do NOT invoke any other implementation skill. The ONLY skill you invoke after design approval is writing-plans.
 
 ## The Process
 
@@ -110,10 +109,11 @@ digraph brainstorming {
 
 **Documentation:**
 
+- Create feature branch `archieb/WOR-XXXX` if not already on one
 - Write the validated design (spec) to `docs/specs/YYYY-MM-DD-<topic>-design.md`
   - (User preferences for spec location override this default)
+  - Spec files are gitignored — they are local working documents, not committed
 - Use elements-of-style:writing-clearly-and-concisely skill if available
-- Commit the design document to git
 
 **Spec Self-Review:**
 After writing the spec document, look at it with fresh eyes:
@@ -128,15 +128,14 @@ Fix any issues inline. No need to re-review — just fix and move on.
 **User Review Gate:**
 After the spec review loop passes, ask the user to review the written spec before proceeding:
 
-> "Spec written and committed to `<path>`. Please review it and let me know if you want to make any changes before we start writing out the implementation plan."
+> "Spec written to `<path>`. Please review it and let me know if you want to make any changes before we start writing out the implementation plan."
 
 Wait for the user's response. If they request changes, make them and re-run the spec review loop. Only proceed once the user approves.
 
 **Implementation:**
 
-- Once the user approves the spec, invoke the using-git-worktrees skill to create an isolated workspace
-- Then invoke the writing-plans skill to create a detailed implementation plan
-- Do NOT invoke any other skill. using-git-worktrees then writing-plans is the next step.
+- Once the user approves the spec, invoke the writing-plans skill to create a detailed implementation plan
+- Do NOT invoke any other skill. writing-plans is the next step.
 
 ## Key Principles
 

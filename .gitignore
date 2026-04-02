@@ -33,7 +33,7 @@
 /config/master.key
 
 # Ignore new battle-plans
-doc/battle-plan/*
+docs/*
 
 # ignore device-specific claude code settings
 .claude/*
