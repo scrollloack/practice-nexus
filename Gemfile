@@ -12,7 +12,7 @@ gem "puma", ">= 5.0"
 gem "sprockets-rails"        # Asset pipeline (required by graphiql-rails)
 
 # GraphQL
-gem "graphql", "~> 2.3"      # Core GraphQL-Ruby library
+gem "graphql", "~> 2.5"      # Core GraphQL-Ruby library
 gem "graphiql-rails"         # Browser-based GraphQL IDE (development only)
 
 # Kafka / Pub-Sub
